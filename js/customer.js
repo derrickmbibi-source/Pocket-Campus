@@ -1,5 +1,6 @@
+import { API_KEY } from "./APIKEY";
 
-
+const GROQ_API_KEY = API_KEY;
 const GROQ_MODEL   = "llama-3.1-8b-instant";
 const API_URL = `https://api.groq.com/openai/v1/chat/completions`;
 
