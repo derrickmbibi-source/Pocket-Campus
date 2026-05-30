@@ -1,5 +1,5 @@
 
-const GROQ_API_KEY = "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";
+
 const GROQ_MODEL   = "llama-3.1-8b-instant";
 const API_URL = `https://api.groq.com/openai/v1/chat/completions`;
 
