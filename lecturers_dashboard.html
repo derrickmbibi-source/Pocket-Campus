@@ -8,6 +8,8 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 <link rel="stylesheet" href="/CSS/style.css"/>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>  <!-- client init first -->
+<script src="auth.js"></script>      <!-- then auth functions -->
 <script>
   const { createClient } = supabase
 
@@ -16,6 +18,14 @@
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdzaXVmenVlaXdtdW5qcWFrcmh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwODQ5NzUsImV4cCI6MjA5NTY2MDk3NX0.9wfy72R2VRbLjXDSOUZR-nRpeUO9hgrkXVUwOwoE8Vc'
   )
 </script>
+<script>
+  _supabase.auth.onAuthStateChange((event, session) => {
+    if (!session) {
+      window.location.href = '/LMS Login/student-login.html'
+    }
+  })
+</script>
+
 </head>
 <body>
 <div id="app">
