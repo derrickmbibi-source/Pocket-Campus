@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Sign Up – Pocket Campus</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .form-panel { padding: 32px 52px; }
+    @media (max-width: 900px) { .form-panel { padding: 24px; } }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- ── Brand Panel ── -->
+  <aside class="brand-panel">
+    <div class="brand-bg" aria-hidden="true" style="position:absolute;inset:0;background-image:url('img/bgimage.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0.95;z-index:-1;"></div>
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+
+    <a href="student-login.html" class="logo">
+      <div class="logo-icon">🎓</div>
+      <span class="logo-text">Pocket Campus</span>
+    </a>
+
+    <div class="brand-content">
+      <h1 class="brand-headline">
+        Start your<br/>
+        <span class="accent">learning journey.</span>
+      </h1>
+      <p class="brand-desc">
+        Join thousands of students already managing their academic life smarter. Create your account in under 2 minutes.
+      </p>
+      <div class="stats">
+        <div class="stat-item">
+          <div class="stat-num">15k+</div>
+          <div class="stat-label">Active Students</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Courses</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">98%</div>
+          <div class="stat-label">Satisfaction</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="brand-footer">© 2024 Pocket Campus. All rights reserved.</p>
+  </aside>
+
+  <!-- ── Form Panel ── -->
+  <main class="form-panel">
+    <div class="form-container">
+
+      <div class="badge"><div class="pulse-dot"></div> Student Registration</div>
+
+      <!-- Steps -->
+      <div class="steps" id="steps">
+        <div class="step active" id="step-ind-1">
+          <div class="step-circle">1</div>
+          <div class="step-label">Personal Info</div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" id="step-ind-2">
+          <div class="step-circle">2</div>
+          <div class="step-label">Academic Info</div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" id="step-ind-3">
+          <div class="step-circle">3</div>
+          <div class="step-label">Security</div>
+        </div>
+      </div>
+
+      <form id="signupForm" novalidate>
+
+        <!-- ── Step 1: Personal Info ── -->
+        <div class="form-step" id="step-1">
+          <div class="form-header" style="margin-bottom:24px">
+            <h2 class="form-title">Create your account</h2>
+            <p class="form-subtitle">Tell us a bit about yourself</p>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="fullname">Full Name</label>
+              <input class="form-input" type="text" id="fullname" placeholder="e.g. Amina Yusuf" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="gender">Gender</label>
+              <select class="form-select" id="gender">
+                <option value="" disabled selected>Select gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Prefer not to say</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="username">Username</label>
+              <input class="form-input" type="text" id="username" placeholder="e.g. amina_yu" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="phone">Phone Number</label>
+              <input class="form-input" type="tel" id="phone" placeholder="e.g. 08012345678" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="school-email">School Email</label>
+            <input class="form-input" type="email" id="school-email" placeholder="e.g. amina@student.university.edu.ng" />
+          </div>
+
+          <div id="step1-error" class="field-error" style="color:var(--error);font-size:12px;margin-bottom:12px;display:none;"></div>
+
+          <button type="button" class="btn-primary" onclick="nextStep(1)">
+            Continue <span class="btn-arrow">→</span>
+          </button>
+        </div>
+
+        <!-- ── Step 2: Academic Info ── -->
+        <div class="form-step" id="step-2" style="display:none">
+          <div class="form-header" style="margin-bottom:24px">
+            <h2 class="form-title">Academic Details</h2>
+            <p class="form-subtitle">Your matric number and programme info</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="matric">Matric Number</label>
+            <input class="form-input" type="text" id="matric" placeholder="e.g. 2021/CS/0042" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="department">Department</label>
+              <select class="form-select" id="department">
+                <option value="" disabled selected>Select department</option>
+                <option>Computer Science</option>
+                <option>Electrical Engineering</option>
+                <option>Mechanical Engineering</option>
+                <option>Civil Engineering</option>
+                <option>Business Administration</option>
+                <option>Economics</option>
+                <option>Medicine & Surgery</option>
+                <option>Law</option>
+                <option>Mass Communication</option>
+                <option>Biochemistry</option>
+                <option>Microbiology</option>
+                <option>Mathematics</option>
+                <option>Physics</option>
+                <option>Chemistry</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="level">Level</label>
+              <select class="form-select" id="level">
+                <option value="" disabled selected>Select level</option>
+                <option value="100">100 Level</option>
+                <option value="200">200 Level</option>
+                <option value="300">300 Level</option>
+                <option value="400">400 Level</option>
+                <option value="500">500 Level</option>
+                <option value="600">600 Level</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="step2-error" class="field-error" style="color:var(--error);font-size:12px;margin-bottom:12px;display:none;"></div>
+
+          <div style="display:flex;gap:12px;">
+            <button type="button" class="btn-primary" onclick="prevStep(2)"
+              style="background:var(--card-bg);border:1px solid var(--border);box-shadow:none;flex:0 0 auto;width:auto;padding:14px 22px;">
+              ← Back
+            </button>
+            <button type="button" class="btn-primary" onclick="nextStep(2)" style="flex:1">
+              Continue <span class="btn-arrow">→</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- ── Step 3: Security ── -->
+        <div class="form-step" id="step-3" style="display:none">
+          <div class="form-header" style="margin-bottom:24px">
+            <h2 class="form-title">Secure your account</h2>
+            <p class="form-subtitle">Choose a strong password</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <div class="input-wrap">
+              <input class="form-input" type="password" id="password" placeholder="Min. 8 characters" oninput="checkStrength(this.value)" />
+              <button type="button" class="input-icon" onclick="togglePwd('password',this)" aria-label="Toggle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </button>
+            </div>
+            <!-- Strength bar -->
+            <div style="margin-top:8px;display:flex;gap:4px;" id="strength-bars">
+              <div class="s-bar" style="height:4px;flex:1;border-radius:4px;background:var(--border);transition:background 0.3s;"></div>
+              <div class="s-bar" style="height:4px;flex:1;border-radius:4px;background:var(--border);transition:background 0.3s;"></div>
+              <div class="s-bar" style="height:4px;flex:1;border-radius:4px;background:var(--border);transition:background 0.3s;"></div>
+              <div class="s-bar" style="height:4px;flex:1;border-radius:4px;background:var(--border);transition:background 0.3s;"></div>
+            </div>
+            <div id="strength-label" style="font-size:11px;color:var(--text-muted);margin-top:4px;"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="confirm-password">Confirm Password</label>
+            <div class="input-wrap">
+              <input class="form-input" type="password" id="confirm-password" placeholder="Re-enter your password" />
+              <button type="button" class="input-icon" onclick="togglePwd('confirm-password',this)" aria-label="Toggle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div id="step3-error" class="field-error" style="color:var(--error);font-size:12px;margin-bottom:12px;display:none;"></div>
+
+          <div style="display:flex;gap:12px;">
+            <button type="button" class="btn-primary" onclick="prevStep(3)"
+              style="background:var(--card-bg);border:1px solid var(--border);box-shadow:none;flex:0 0 auto;width:auto;padding:14px 22px;">
+              ← Back
+            </button>
+            <button type="submit" class="btn-primary" style="flex:1">
+              Create Account 🎉
+            </button>
+          </div>
+        </div>
+
+      </form>
+
+      <div class="form-footer" style="margin-top:20px">
+        Already have an account? <a href="student-login.html">Sign in</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

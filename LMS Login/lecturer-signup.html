@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lecturer Sign Up – Pocket Campus</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .brand-headline .accent { color: #60a5fa; }
+    .stat-num { color: #60a5fa; }
+    .badge { background: rgba(26,86,219,0.1); border-color: rgba(26,86,219,0.25); color: #93c5fd; }
+    .pulse-dot { background: var(--blue-light); }
+    .step.active .step-circle { border-color: var(--blue-light); background: var(--blue-light); box-shadow: 0 0 14px rgba(59,130,246,0.35); }
+    .form-input:focus, .form-select:focus { border-color: var(--blue-light); box-shadow: 0 0 0 3px rgba(59,130,246,0.2); }
+    .btn-primary { background: linear-gradient(135deg,#1d4ed8,#2563eb,#3b82f6); box-shadow: 0 4px 20px rgba(26,86,219,0.35); }
+    .btn-primary:hover { box-shadow: 0 6px 28px rgba(26,86,219,0.5); }
+    .form-footer a { color: #60a5fa; }
+    .forgot-link { color: #60a5fa; }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- ── Brand Panel ── -->
+  <aside class="brand-panel">
+    <div class="brand-bg" aria-hidden="true" style="position:absolute;inset:0;background-image:url('img/bgimage.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0.95;z-index:-1;"></div>
+    <div class="shape shape-1" style="border-color:rgba(59,130,246,0.15);"></div>
+    <div class="shape shape-2" style="border-color:rgba(96,165,250,0.2);"></div>
+    <div class="shape shape-3"></div>
+
+    <a href="lecturer-login.html" class="logo">
+      <div class="logo-icon" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);">🏛️</div>
+      <span class="logo-text">Pocket Campus</span>
+    </a>
+
+    <div class="brand-content">
+      <h1 class="brand-headline">
+        Join as a<br/>
+        <span class="accent">Lecturer today.</span>
+      </h1>
+      <p class="brand-desc">
+        Upload course materials, manage attendance, set assessments, and guide your students to excellence — all from one platform.
+      </p>
+      <div class="stats">
+        <div class="stat-item">
+          <div class="stat-num">2.4k+</div>
+          <div class="stat-label">Lecturers</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">120+</div>
+          <div class="stat-label">Departments</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">99%</div>
+          <div class="stat-label">Uptime</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="brand-footer">© 2024 Pocket Campus. All rights reserved.</p>
+  </aside>
+
+  <!-- ── Form Panel ── -->
+  <main class="form-panel">
+    <div class="form-container">
+
+      <div class="badge"><div class="pulse-dot"></div> Lecturer Registration</div>
+
+      <!-- Steps -->
+      <div class="steps">
+        <div class="step active" id="step-ind-1">
+          <div class="step-circle">1</div>
+          <div class="step-label">Personal Info</div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" id="step-ind-2">
+          <div class="step-circle">2</div>
+          <div class="step-label">Course & Security</div>
+        </div>
+      </div>
+
+      <form id="lecturerForm" novalidate>
+
+        <!-- ── Step 1 ── -->
+        <div class="form-step" id="step-1">
+          <div class="form-header" style="margin-bottom:24px">
+            <h2 class="form-title">Create Lecturer Account</h2>
+            <p class="form-subtitle">Start with your personal information</p>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="fullname">Full Name</label>
+              <input class="form-input" type="text" id="fullname" placeholder="e.g. Dr. Emeka Obi" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="gender">Gender</label>
+              <select class="form-select" id="gender">
+                <option value="" disabled selected>Select gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Prefer not to say</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="username">Username</label>
+              <input class="form-input" type="text" id="username" placeholder="e.g. dr.obi" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="phone">Phone Number</label>
+              <input class="form-input" type="tel" id="phone" placeholder="e.g. 08012345678" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="work-email">Work Email Address</label>
+            <input class="form-input" type="email" id="work-email" placeholder="e.g. dr.obi@university.edu.ng" />
+          </div>
+
+          <div id="step1-error" style="color:var(--error);font-size:12px;margin-bottom:12px;display:none;"></div>
+
+          <button type="button" class="btn-primary" onclick="nextStep(1)">
+            Continue <span class="btn-arrow">→</span>
+          </button>
+        </div>
+
+        <!-- ── Step 2 ── -->
+        <div class="form-step" id="step-2" style="display:none">
+          <div class="form-header" style="margin-bottom:24px">
+            <h2 class="form-title">Course & Password</h2>
+            <p class="form-subtitle">Assign your course and secure your account</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="course">Course You Teach</label>
+            <select class="form-select" id="course">
+              <option value="" disabled selected>Select your course</option>
+              <optgroup label="Computer Science">
+                <option>Introduction to Programming</option>
+                <option>Data Structures & Algorithms</option>
+                <option>Database Systems</option>
+                <option>Operating Systems</option>
+                <option>Computer Networks</option>
+                <option>Software Engineering</option>
+                <option>Artificial Intelligence</option>
+                <option>Computer Architecture</option>
+              </optgroup>
+              <optgroup label="Engineering">
+                <option>Engineering Mathematics</option>
+                <option>Thermodynamics</option>
+                <option>Fluid Mechanics</option>
+                <option>Circuit Theory</option>
+                <option>Signals & Systems</option>
+              </optgroup>
+              <optgroup label="Sciences">
+                <option>General Chemistry</option>
+                <option>General Physics</option>
+                <option>Calculus</option>
+                <option>Statistics</option>
+                <option>Biochemistry</option>
+              </optgroup>
+              <optgroup label="Humanities">
+                <option>Communication Skills</option>
+                <option>Philosophy of Science</option>
+                <option>Economics</option>
+                <option>Business Management</option>
+              </optgroup>
+              <option value="other">Other (specify later)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <div class="input-wrap">
+              <input class="form-input" type="password" id="password" placeholder="Min. 8 characters" oninput="checkStrength(this.value)" />
+              <button type="button" class="input-icon" onclick="togglePwd('password',this)" aria-label="Toggle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </button>
+            </div>
+            <div style="margin-top:8px;display:flex;gap:4px;">
+              <div class="s-bar" style="height:4px;flex:1;border-radius:4px;background:var(--border);transition:background 0.3s;"></div>
+              <div class="s-bar" style="height:4px;flex:1;border-radius:4px;background:var(--border);transition:background 0.3s;"></div>
+              <div class="s-bar" style="height:4px;flex:1;border-radius:4px;background:var(--border);transition:background 0.3s;"></div>
+              <div class="s-bar" style="height:4px;flex:1;border-radius:4px;background:var(--border);transition:background 0.3s;"></div>
+            </div>
+            <div id="strength-label" style="font-size:11px;color:var(--text-muted);margin-top:4px;"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="confirm-password">Confirm Password</label>
+            <div class="input-wrap">
+              <input class="form-input" type="password" id="confirm-password" placeholder="Re-enter your password" />
+              <button type="button" class="input-icon" onclick="togglePwd('confirm-password',this)" aria-label="Toggle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div id="step2-error" style="color:var(--error);font-size:12px;margin-bottom:12px;display:none;"></div>
+
+          <div style="display:flex;gap:12px;">
+            <button type="button" class="btn-primary" onclick="prevStep(2)"
+              style="background:var(--card-bg);border:1px solid var(--border);box-shadow:none;flex:0 0 auto;width:auto;padding:14px 22px;">
+              ← Back
+            </button>
+            <button type="submit" class="btn-primary" style="flex:1">
+              Create Account 🎉
+            </button>
+          </div>
+        </div>
+
+      </form>
+
+      <div class="form-footer" style="margin-top:20px">
+        Already have an account? <a href="lecturer-login.html">Sign in</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

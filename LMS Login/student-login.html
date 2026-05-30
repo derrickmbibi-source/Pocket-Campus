@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Login – Pocket Campus</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- ── Brand Panel ── -->
+  <aside class="brand-panel">
+    <div class="brand-bg" aria-hidden="true" style="position:absolute;inset:0;background-image:url('img/bgimage.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0.95;z-index:-1;"></div>
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+
+    <a href="#" class="logo">
+      <div class="logo-icon">🎓</div>
+      <span class="logo-text">Pocket Campus</span>
+    </a>
+
+    <div class="brand-content">
+      <h1 class="brand-headline">
+        Your entire campus,<br/>
+        <span class="accent">in your pocket.</span>
+      </h1>
+      <p class="brand-desc">
+        Access course materials, track attendance, take quizzes, and connect with AI-powered learning assistance — all in one place.
+      </p>
+      <div class="stats">
+        <div class="stat-item">
+          <div class="stat-num">15k+</div>
+          <div class="stat-label">Active Students</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Courses</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">98%</div>
+          <div class="stat-label">Satisfaction</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="brand-footer">© 2024 Pocket Campus. All rights reserved.</p>
+  </aside>
+
+  <!-- ── Form Panel ── -->
+  <main class="form-panel">
+    <div class="form-container">
+
+      <div class="badge"><div class="pulse-dot"></div> Student Portal</div>
+
+      <!-- Role tabs -->
+      <div class="role-tabs">
+        <span class="role-tab active">Student</span>
+        <a href="lecturer-login.html" class="role-tab">Lecturer</a>
+      </div>
+
+      <div class="form-header">
+        <h2 class="form-title">Welcome back 👋</h2>
+        <p class="form-subtitle">Sign in to continue to your dashboard</p>
+      </div>
+
+      <form id="loginForm" action="Course registration.html" novalidate>
+
+        <div class="form-group">
+          <label class="form-label" for="identifier">Matric No / Username</label>
+          <div class="input-wrap">
+            <input class="form-input" type="text" id="identifier" placeholder="e.g. 2021/CS/0042 or johndoe" autocomplete="username" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label class="form-label" for="password" style="margin:0">Password</label>
+            <a href="forgot-password.html" class="forgot-link">Forgot password?</a>
+          </div>
+          <div class="input-wrap">
+            <input class="form-input" type="password" id="password" placeholder="Enter your password" autocomplete="current-password" />
+            <button type="button" class="input-icon" onclick="togglePwd('password', this)" aria-label="Toggle password">
+              <svg id="eye-password" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+          <div class="field-error" id="pwd-error" style="color:var(--error);font-size:12px;margin-top:4px;display:none;">Incorrect credentials. Please try again.</div>
+        </div>
+
+        <button type="submit" class="btn-primary">
+          Sign In <span class="btn-arrow">→</span>
+        </button>
+
+      </form>
+
+      <div class="divider">or</div>
+
+      <!-- Demo accounts -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:24px;">
+        <button class="demo-btn" onclick="fillDemo('2021/CS/0042','student123')" style="padding:12px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--white);cursor:pointer;text-align:left;transition:all 0.2s;font-family:'DM Sans',sans-serif;">
+          <div style="font-size:12px;font-weight:600;margin-bottom:2px;">Demo Student</div>
+          <div style="font-size:11px;color:var(--text-muted);">2021/CS/0042</div>
+        </button>
+        <button class="demo-btn" onclick="window.location='lecturer-login.htm'" style="padding:12px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--white);cursor:pointer;text-align:left;transition:all 0.2s;font-family:'DM Sans',sans-serif;">
+          <div style="font-size:12px;font-weight:600;margin-bottom:2px;">Demo Lecturer</div>
+          <div style="font-size:11px;color:var(--text-muted);">Go to Lecturer Login</div>
+        </button>
+      </div>
+
+      <div class="form-footer">
+        Don't have an account?
+        <a href="student-signup.html">Create account</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

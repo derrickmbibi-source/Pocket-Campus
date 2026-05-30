@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lecturer Login – Pocket Campus</title>
+  <link rel="stylesheet" href="styles.css" />
+  
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- ── Brand Panel ── -->
+  <aside class="brand-panel">
+    <div class="brand-bg" aria-hidden="true" style="position:absolute;inset:0;background-image:url('img/bgimage.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0.95;z-index:-1;"></div>
+    <div class="shape shape-1" style="border-color:rgba(59,130,246,0.15);"></div>
+    <div class="shape shape-2" style="border-color:rgba(96,165,250,0.2);"></div>
+    <div class="shape shape-3"></div>
+
+    <a href="#" class="logo">
+      <div class="logo-icon" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);">🏛️</div>
+      <span class="logo-text">Pocket Campus</span>
+    </a>
+
+    <div class="brand-content">
+      <h1 class="brand-headline">
+        Empower your<br/>
+        <span class="accent">classroom.</span>
+      </h1>
+      <p class="brand-desc">
+        Manage courses, track student progress, conduct assessments, and deliver impactful lectures — all from one smart dashboard.
+      </p>
+      <div class="stats">
+        <div class="stat-item">
+          <div class="stat-num">2.4k+</div>
+          <div class="stat-label">Lecturers</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">120+</div>
+          <div class="stat-label">Departments</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">99%</div>
+          <div class="stat-label">Uptime</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="brand-footer">© 2024 Pocket Campus. All rights reserved.</p>
+  </aside>
+
+  <!-- ── Form Panel ── -->
+  <main class="form-panel">
+    <div class="form-container">
+
+      <div class="badge"><div class="pulse-dot"></div> Lecturer Portal</div>
+
+      <!-- Role tabs -->
+      <div class="role-tabs">
+        <a href="student-login.html" class="role-tab">Student</a>
+        <span class="role-tab active">Lecturer</span>
+      </div>
+
+      <div class="form-header">
+        <h2 class="form-title">Welcome back 👨‍🏫</h2>
+        <p class="form-subtitle">Sign in to access your teaching dashboard</p>
+      </div>
+
+      <form id="lecturerLoginForm" novalidate>
+
+        <div class="form-group">
+          <label class="form-label" for="email">Work Email Address</label>
+          <div class="input-wrap">
+            <input class="form-input" type="email" id="email" placeholder="e.g. lecturer@university.edu.ng" autocomplete="email" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label class="form-label" for="password" style="margin:0">Password</label>
+            <a href="forgot-password.html" class="forgot-link">Forgot password?</a>
+          </div>
+          <div class="input-wrap">
+            <input class="form-input" type="password" id="password" placeholder="Enter your password" autocomplete="current-password" />
+            <button type="button" class="input-icon" onclick="togglePwd('password', this)" aria-label="Toggle password">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+          <div id="form-error" style="color:var(--error);font-size:12px;margin-top:4px;display:none;">Invalid email or password. Please try again.</div>
+        </div>
+
+        <button type="submit" class="btn-primary" style="background:linear-gradient(135deg,#1d4ed8,#2563eb,#3b82f6);box-shadow:0 4px 20px rgba(26,86,219,0.35);">
+          Sign In <span class="btn-arrow">→</span>
+        </button>
+
+      </form>
+
+      <div class="divider">demo account</div>
+
+      <button onclick="fillDemo('lecturer@campus.edu.ng','lecture123')"
+        style="width:100%;padding:14px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--white);cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;justify-content:space-between;align-items:center;transition:border-color 0.2s;"
+        onmouseenter="this.style.borderColor='rgba(59,130,246,0.4)'"
+        onmouseleave="this.style.borderColor='var(--border)'">
+        <div style="text-align:left">
+          <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Demo Lecturer Account</div>
+          <div style="font-size:12px;color:var(--text-muted);">lecturer@campus.edu.ng</div>
+        </div>
+        <span style="color:#60a5fa;font-size:13px;">Use →</span>
+      </button>
+
+      <div class="form-footer" style="margin-top:28px">
+        Not a lecturer?
+        <a href="student-login.html">Student login</a>
+        &nbsp;·&nbsp;
+        <a href="lecturer-signup.html">Create account</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
