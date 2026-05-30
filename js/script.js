@@ -212,29 +212,30 @@ function sendCampAI(){
 }
 
 // ─── Customer Service Chat ─────────────────────────────────
-const csResponses=[
-  "I understand your concern! Let me look into that for you. Could you give me a bit more detail?",
-  "This is a known issue and our team is working on it. Expected resolution is within 24 hours.",
-  "Try clearing your browser cache and logging back in. This resolves the issue in most cases.",
-  "I'm sorry I couldn't fully resolve this. Please email support@pocketcampus.edu with the details and our team will assist you promptly.",
-  "You can manage that setting under Settings > Notification Preferences in your dashboard.",
-];
-let csIdx=0;
-function sendCS(){
-  const input=document.getElementById('csInput');
-  const msg=input.value.trim();
-  if(!msg) return;
-  const box=document.getElementById('csMessages');
-  box.innerHTML+=`<div class="msg user" style="max-width:100%;flex-direction:row-reverse"><div class="msg-av user" style="width:26px;height:26px;min-width:26px;font-size:11px"><i class="fas fa-user"></i></div><div class="msg-bubble" style="font-size:12px">${msg}</div></div>`;
-  input.value='';
-  box.scrollTop=box.scrollHeight;
-  setTimeout(()=>{
-    const reply=csResponses[csIdx%csResponses.length];
-    csIdx++;
-    box.innerHTML+=`<div class="msg ai" style="max-width:100%"><div class="msg-av" style="width:26px;height:26px;min-width:26px;font-size:11px"><i class="fas fa-headset"></i></div><div class="msg-bubble" style="font-size:12px">${reply}</div></div>`;
-    box.scrollTop=box.scrollHeight;
-  },1200);
-}
+// const csResponses=[
+//   "I understand your concern! Let me look into that for you. Could you give me a bit more detail?",
+//   "This is a known issue and our team is working on it. Expected resolution is within 24 hours.",
+//   "Try clearing your browser cache and logging back in. This resolves the issue in most cases.",
+//   "I'm sorry I couldn't fully resolve this. Please email support@pocketcampus.edu with the details and our team will assist you promptly.",
+//   "You can manage that setting under Settings > Notification Preferences in your dashboard.",
+// ];
+// let csIdx=0;
+// function sendCS(){
+//   const input=document.getElementById('csInput');
+//   const msg=input.value.trim();
+//   if(!msg) return;
+//   const box=document.getElementById('csMessages');
+//   box.innerHTML+=`<div class="msg user" style="max-width:100%;flex-direction:row-reverse"><div class="msg-av user" style="width:26px;height:26px;min-width:26px;font-size:11px"><i class="fas fa-user"></i></div><div class="msg-bubble" style="font-size:12px">${msg}</div></div>`;
+//   input.value='';
+//   box.scrollTop=box.scrollHeight;
+//   setTimeout(()=>{
+//     const reply=csResponses[csIdx%csResponses.length];
+//     csIdx++;
+//     box.innerHTML+=`<div class="msg ai" style="max-width:100%"><div class="msg-av" style="width:26px;height:26px;min-width:26px;font-size:11px"><i class="fas fa-headset"></i></div><div class="msg-bubble" style="font-size:12px">${reply}</div></div>`;
+//     box.scrollTop=box.scrollHeight;
+//   },1200);
+// }
+
 
 function toggleCS(){
   document.getElementById('csPanel').classList.toggle('open');
