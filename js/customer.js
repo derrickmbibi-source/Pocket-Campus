@@ -4,10 +4,7 @@ const GROQ_MODEL   = "llama-3.1-8b-instant";
 const API_URL = `https://api.groq.com/openai/v1/chat/completions`;
 
 async function callGROQ(prompt) {
-  const res = await fetch(AP
-          
-          
-        I_URL, {
+  const res = await fetch(API_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
