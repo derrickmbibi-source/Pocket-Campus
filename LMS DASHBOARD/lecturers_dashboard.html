@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PocketCampus – Lecturer Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="app">
+  <!-- ═══ SIDEBAR ═══ -->
+  <nav id="sidebar">
+    <div class="logo-area">
+      <div class="logo-icon">PC</div>
+      <div class="logo-text">Pocket<span>Campus</span></div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-label">Main</div>
+      <div class="nav-item active" data-page="dashboard"><i class="fas fa-th-large"></i><span class="nav-label">Dashboard</span></div>
+      <div class="nav-item" data-page="materials"><i class="fas fa-folder-open"></i><span class="nav-label">Materials</span></div>
+      <div class="nav-item" data-page="attendance"><i class="fas fa-user-check"></i><span class="nav-label">Attendance</span></div>
+      <div class="nav-item" data-page="timetable"><i class="fas fa-calendar-alt"></i><span class="nav-label">Timetable</span></div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-label">Tools</div>
+      <!-- Snap Test -->
+      <div class="nav-item has-sub" id="nav-snaptest"><i class="fas fa-bolt"></i><span class="nav-label">Snap-Test</span><i class="fas fa-chevron-right arrow nav-label"></i></div>
+      <div class="sub-items" id="sub-snaptest">
+        <div class="sub-item" data-page="quiz-manual"><i class="fas fa-pen"></i>Manual Quiz</div>
+        <div class="sub-item" data-page="quiz-ai"><i class="fas fa-robot"></i>AI-Generated</div>
+        <div class="sub-item" data-page="quiz-summarize"><i class="fas fa-file-alt"></i>Summarize Note</div>
+      </div>
+      <!-- Assignment -->
+      <div class="nav-item" data-page="assignment"><i class="fas fa-tasks"></i><span class="nav-label">Create Assignment</span></div>
+      <!-- Announcement -->
+      <div class="nav-item" data-page="announcement"><i class="fas fa-bullhorn"></i><span class="nav-label">Announcement</span></div>
+      <!-- Create Class -->
+      <div class="nav-item" data-page="create-class"><i class="fas fa-video"></i><span class="nav-label">Create Class</span></div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-label">AI</div>
+      <div class="nav-item" data-page="pocketai"><i class="fas fa-brain"></i><span class="nav-label">PocketAi</span><span class="nav-badge nav-label">Gemma 4</span></div>
+    </div>
+
+    <div class="sidebar-spacer"></div>
+
+    <div class="nav-section">
+      <div class="nav-section-label">Account</div>
+      <div class="nav-item" data-page="notifications"><i class="fas fa-bell"></i><span class="nav-label">Notifications</span><span class="nav-badge nav-label">5</span></div>
+      <div class="nav-item" data-page="profile"><i class="fas fa-user-circle"></i><span class="nav-label">Profile</span></div>
+      <div class="nav-item" data-page="settings"><i class="fas fa-cog"></i><span class="nav-label">Settings</span></div>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i><span class="sidebar-footer-text">Logout</span></div>
+    </div>
+  </nav>
+
+  <!-- ═══ MAIN ═══ -->
+  <div id="main">
+    <!-- TOPBAR -->
+    <div id="topbar">
+      <div class="topbar-left">
+        <button class="collapse-btn" id="collapseBtn"><i class="fas fa-bars"></i></button>
+        <span class="topbar-title" id="topbarTitle">Dashboard</span>
+      </div>
+      <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search courses, notes…" id="globalSearch"/>
+      </div>
+      <div class="topbar-right">
+        <button class="icon-btn" id="notifBtn" title="Notifications">
+          <i class="fas fa-bell"></i>
+          <span class="notif-badge"></span>
+        </button>
+        <div class="profile-pic" id="profileBtn" title="Profile">
+          <span>DW</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div id="content">
+
+      <!-- ─── DASHBOARD ─────────────────────────────────────────── -->
+      <div class="page active" id="page-dashboard">
+        <div class="welcome-row">
+          <h1>Good evening, <span>Dr. Williams</span> 👋</h1>
+          <p id="dashDate">Loading date…</p>
+        </div>
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div>
+              <div class="stat-label">Total Enrolled Students</div>
+              <div class="stat-value">156</div>
+              <div class="stat-delta"><i class="fas fa-arrow-up"></i>+12 this week</div>
+            </div>
+            <div class="stat-icon blue"><i class="fas fa-users"></i></div>
+          </div>
+          <div class="stat-card">
+            <div>
+              <div class="stat-label">Average Quiz Score</div>
+              <div class="stat-value">78%</div>
+              <div class="stat-delta"><i class="fas fa-arrow-up"></i>+3% from last month</div>
+            </div>
+            <div class="stat-icon green"><i class="fas fa-chart-line"></i></div>
+          </div>
+          <div class="stat-card">
+            <div>
+              <div class="stat-label">Current Attendance</div>
+              <div class="stat-value">89%</div>
+              <div class="stat-delta" style="color:var(--text-secondary)"><i class="fas fa-clock"></i>Last session</div>
+            </div>
+            <div class="stat-icon teal"><i class="fas fa-clipboard-check"></i></div>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <!-- Upload -->
+          <div class="card">
+            <div class="card-title">Upload Course Materials</div>
+            <div class="upload-drop" onclick="document.getElementById('fileUpload').click()">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <p>Drag and Drop PDF Files<br><small>or click to browse from your computer</small></p>
+              <button class="btn btn-primary btn-sm">Browse Files</button>
+              <input type="file" id="fileUpload" accept=".pdf" hidden multiple onchange="handleFileUpload(this)"/>
+            </div>
+            <div class="ai-toggle-row">
+              <div class="ai-toggle-icon"><i class="fas fa-robot"></i></div>
+              <div class="ai-toggle-text">
+                <p>Auto-generate AI summaries and quizzes</p>
+                <span>Automatically create study materials upon upload</span>
+              </div>
+              <div class="toggle on" id="aiToggle" onclick="this.classList.toggle('on')"></div>
+            </div>
+          </div>
+          <!-- Attendance -->
+          <div class="card">
+            <div class="card-title">Attendance Control Panel</div>
+            <div class="att-window">
+              <div class="att-header">
+                <div class="att-icon"><i class="fas fa-clock"></i></div>
+                <div>
+                  <div class="att-course">Class Attendance Window</div>
+                  <div class="att-sub">CS201 – Data Structures</div>
+                </div>
+                <span class="closed-badge" id="attBadge">Closed</span>
+              </div>
+              <div class="toggle-row">
+                <span class="toggle-label">Open Class Attendance Window</span>
+                <div class="toggle" id="attToggle" onclick="toggleAttendance()"></div>
+              </div>
+              <div class="att-stats">
+                <div class="att-stat-box">
+                  <div class="att-stat-num present">139</div>
+                  <div class="att-stat-lbl">Present Today</div>
+                </div>
+                <div class="att-stat-box">
+                  <div class="att-stat-num absent">17</div>
+                  <div class="att-stat-lbl">Absent</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Announcements -->
+        <div class="card">
+          <div class="card-title">Recent Announcements <button class="btn btn-outline btn-sm" onclick="navigate('announcement')">+ New</button></div>
+          <div class="announcement-list" id="announcementList">
+            <div class="ann-item">
+              <div class="ann-title">Mid-Semester Exam Schedule Released</div>
+              <div class="ann-desc">The exam for CS201 has been scheduled. Please review the syllabus.</div>
+              <a class="ann-link" href="#">https://portal.pocketcampus.edu/exams/cs201</a>
+              <div class="ann-meta">Posted by Dr. Williams · May 28, 2026</div>
+            </div>
+            <div class="ann-item">
+              <div class="ann-title">Assignment 3 Deadline Extended</div>
+              <div class="ann-desc">The deadline for Assignment 3 has been moved to June 5, 2026.</div>
+              <div class="ann-meta">Posted by Dr. Williams · May 27, 2026</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── MATERIALS ──────────────────────────────────────────── -->
+      <div class="page" id="page-materials">
+        <div class="page-header"><h2>Course Materials</h2><p>Upload and manage lecture notes, PDFs, and resources.</p></div>
+        <div class="card" style="margin-bottom:20px">
+          <div class="card-title">Upload New Material</div>
+          <div class="form-grid">
+            <div class="form-group"><label>Select Course</label>
+              <select><option>CS201 – Data Structures</option><option>CS301 – Algorithms</option><option>CS401 – OS Fundamentals</option></select>
+            </div>
+            <div class="form-group"><label>File (PDF)</label>
+              <input type="file" accept=".pdf"/>
+            </div>
+            <div class="form-group"><label>Description</label>
+              <textarea placeholder="Brief description of the material…"></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary"><i class="fas fa-upload"></i>Upload Material</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Uploaded Materials</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Title</th><th>Course</th><th>Uploaded</th><th>AI Summary</th><th>Actions</th></tr></thead>
+              <tbody>
+                <tr><td>Week 5 – Binary Trees</td><td><span class="course-code-tag">CS201</span></td><td>May 25, 2026</td><td><span class="chip green"><i class="fas fa-check"></i>Generated</span></td><td><button class="btn btn-outline btn-sm">View</button> <button class="btn btn-danger btn-sm">Delete</button></td></tr>
+                <tr><td>Algorithm Analysis Notes</td><td><span class="course-code-tag">CS301</span></td><td>May 20, 2026</td><td><span class="chip blue"><i class="fas fa-spinner fa-spin"></i>Pending</span></td><td><button class="btn btn-outline btn-sm">View</button> <button class="btn btn-danger btn-sm">Delete</button></td></tr>
+                <tr><td>OS Process Management</td><td><span class="course-code-tag">CS401</span></td><td>May 18, 2026</td><td><span class="chip green"><i class="fas fa-check"></i>Generated</span></td><td><button class="btn btn-outline btn-sm">View</button> <button class="btn btn-danger btn-sm">Delete</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── ATTENDANCE ─────────────────────────────────────────── -->
+      <div class="page" id="page-attendance">
+        <div class="page-header"><h2>Attendance Management</h2><p>Track and manage student attendance for all your courses.</p></div>
+        <div class="stat-grid" style="margin-bottom:20px">
+          <div class="stat-card"><div><div class="stat-label">CS201 Attendance</div><div class="stat-value">89%</div><div class="stat-delta"><i class="fas fa-users"></i>156 students</div></div><div class="stat-icon blue"><i class="fas fa-clipboard-list"></i></div></div>
+          <div class="stat-card"><div><div class="stat-label">CS301 Attendance</div><div class="stat-value">84%</div><div class="stat-delta"><i class="fas fa-users"></i>98 students</div></div><div class="stat-icon green"><i class="fas fa-clipboard-list"></i></div></div>
+          <div class="stat-card"><div><div class="stat-label">CS401 Attendance</div><div class="stat-value">91%</div><div class="stat-delta"><i class="fas fa-users"></i>72 students</div></div><div class="stat-icon teal"><i class="fas fa-clipboard-list"></i></div></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Attendance Windows</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div class="att-window" id="attWin1">
+              <div class="att-header">
+                <div class="att-icon"><i class="fas fa-clock"></i></div>
+                <div><div class="att-course">CS201 – Data Structures</div><div class="att-sub">MWF 09:00 – 10:00 AM · LT-A</div></div>
+                <span class="closed-badge" id="attBadge1">Closed</span>
+              </div>
+              <div class="toggle-row">
+                <span class="toggle-label">Open Attendance Window</span>
+                <div class="toggle" id="attTgl1" onclick="toggleWin('attBadge1','attTgl1')"></div>
+              </div>
+              <div class="att-stats"><div class="att-stat-box"><div class="att-stat-num present">139</div><div class="att-stat-lbl">Present</div></div><div class="att-stat-box"><div class="att-stat-num absent">17</div><div class="att-stat-lbl">Absent</div></div></div>
+            </div>
+            <div class="att-window">
+              <div class="att-header">
+                <div class="att-icon"><i class="fas fa-clock"></i></div>
+                <div><div class="att-course">CS301 – Algorithms</div><div class="att-sub">TTh 11:00 AM – 12:30 PM · LT-B</div></div>
+                <span class="closed-badge" id="attBadge2">Closed</span>
+              </div>
+              <div class="toggle-row">
+                <span class="toggle-label">Open Attendance Window</span>
+                <div class="toggle" id="attTgl2" onclick="toggleWin('attBadge2','attTgl2')"></div>
+              </div>
+              <div class="att-stats"><div class="att-stat-box"><div class="att-stat-num present">82</div><div class="att-stat-lbl">Present</div></div><div class="att-stat-box"><div class="att-stat-num absent">16</div><div class="att-stat-lbl">Absent</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── TIMETABLE ──────────────────────────────────────────── -->
+      <div class="page" id="page-timetable">
+        <div class="page-header"><h2>My Timetable</h2><p>Weekly class schedule for the current semester.</p></div>
+        <div class="card">
+          <div class="card-title">Weekly Schedule <button class="btn btn-primary btn-sm" onclick="openModal('addClassModal')"><i class="fas fa-plus"></i>Add</button></div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Course Name</th>
+                  <th>Course Code</th>
+                  <th>Day(s)</th>
+                  <th>Time</th>
+                  <th>Venue / Location</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="timetableBody">
+                <tr>
+                  <td>1</td>
+                  <td>Data Structures</td>
+                  <td><span class="course-code-tag">CS201</span></td>
+                  <td>Mon, Wed, Fri</td>
+                  <td>09:00 – 10:00 AM</td>
+                  <td><span class="venue-tag"><i class="fas fa-map-marker-alt"></i>LT-A, Block 2</span></td>
+                  <td><button class="btn btn-outline btn-sm">Edit</button> <button class="btn btn-danger btn-sm" onclick="delRow(this)">Delete</button></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Algorithms</td>
+                  <td><span class="course-code-tag">CS301</span></td>
+                  <td>Tue, Thu</td>
+                  <td>11:00 AM – 12:30 PM</td>
+                  <td><span class="venue-tag"><i class="fas fa-map-marker-alt"></i>LT-B, Block 1</span></td>
+                  <td><button class="btn btn-outline btn-sm">Edit</button> <button class="btn btn-danger btn-sm" onclick="delRow(this)">Delete</button></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Operating Systems</td>
+                  <td><span class="course-code-tag">CS401</span></td>
+                  <td>Mon, Wed</td>
+                  <td>02:00 – 03:30 PM</td>
+                  <td><span class="venue-tag"><i class="fas fa-map-marker-alt"></i>Room 304, Block 3</span></td>
+                  <td><button class="btn btn-outline btn-sm">Edit</button> <button class="btn btn-danger btn-sm" onclick="delRow(this)">Delete</button></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Computer Networks</td>
+                  <td><span class="course-code-tag">CS501</span></td>
+                  <td>Fri</td>
+                  <td>01:00 – 02:00 PM</td>
+                  <td><span class="venue-tag"><i class="fas fa-map-marker-alt"></i>Lab 1, ICT Block</span></td>
+                  <td><button class="btn btn-outline btn-sm">Edit</button> <button class="btn btn-danger btn-sm" onclick="delRow(this)">Delete</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── QUIZ MANUAL ────────────────────────────────────────── -->
+      <div class="page" id="page-quiz-manual">
+        <div class="page-header"><h2>Snap-Test · Manual Quiz</h2><p>Create a quiz by adding your own questions.</p></div>
+        <div class="card">
+          <div class="quiz-type-row">
+            <div class="type-pill selected"><i class="fas fa-pen"></i><span>Manual</span></div>
+            <div class="type-pill" onclick="navigate('quiz-ai')"><i class="fas fa-robot"></i><span>AI-Generated</span></div>
+            <div class="type-pill" onclick="navigate('quiz-summarize')"><i class="fas fa-file-alt"></i><span>Summarize Note</span></div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group"><label>Quiz Title</label><input type="text" placeholder="e.g. Week 5 – Binary Trees Quiz"/></div>
+            <div class="form-group"><label>Select Course</label><select><option>CS201 – Data Structures</option><option>CS301 – Algorithms</option><option>CS401 – OS Fundamentals</option></select></div>
+            <div class="form-group full-col"><label>Instructions</label><textarea placeholder="Enter quiz instructions…"></textarea></div>
+          </div>
+          <div class="divider"></div>
+          <div id="questionsContainer">
+            <div class="form-group" style="margin-bottom:10px"><label>Question 1</label><input type="text" placeholder="Enter question here…"/></div>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:10px">
+            <button class="btn btn-outline btn-sm" onclick="addQuestion()"><i class="fas fa-plus"></i>Add Question</button>
+            <button class="btn btn-primary" style="margin-left:auto"><i class="fas fa-paper-plane"></i>Publish Quiz</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── QUIZ AI ────────────────────────────────────────────── -->
+      <div class="page" id="page-quiz-ai">
+        <div class="page-header"><h2>Snap-Test · AI-Generated Quiz</h2><p>Let Gemma 4 create questions from your materials.</p></div>
+        <div class="card">
+          <div class="quiz-type-row">
+            <div class="type-pill" onclick="navigate('quiz-manual')"><i class="fas fa-pen"></i><span>Manual</span></div>
+            <div class="type-pill selected"><i class="fas fa-robot"></i><span>AI-Generated</span></div>
+            <div class="type-pill" onclick="navigate('quiz-summarize')"><i class="fas fa-file-alt"></i><span>Summarize Note</span></div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group"><label>Select Course</label><select><option>CS201</option><option>CS301</option></select></div>
+            <div class="form-group"><label>Source Material</label><select><option>Week 5 – Binary Trees.pdf</option><option>Algorithm Analysis Notes.pdf</option></select></div>
+            <div class="form-group"><label>Number of Questions</label><input type="number" value="10" min="1" max="50"/></div>
+            <div class="form-group"><label>Difficulty</label><select><option>Easy</option><option selected>Medium</option><option>Hard</option></select></div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-green"><i class="fas fa-magic"></i>Generate Quiz</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── QUIZ SUMMARIZE ─────────────────────────────────────── -->
+      <div class="page" id="page-quiz-summarize">
+        <div class="page-header"><h2>Snap-Test · Summarize Note</h2><p>AI-powered note summarization using Gemma 4.</p></div>
+        <div class="card">
+          <div class="quiz-type-row">
+            <div class="type-pill" onclick="navigate('quiz-manual')"><i class="fas fa-pen"></i><span>Manual</span></div>
+            <div class="type-pill" onclick="navigate('quiz-ai')"><i class="fas fa-robot"></i><span>AI-Generated</span></div>
+            <div class="type-pill selected"><i class="fas fa-file-alt"></i><span>Summarize Note</span></div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group"><label>Upload or Select PDF</label><input type="file" accept=".pdf"/></div>
+            <div class="form-group"><label>Summary Length</label><select><option>Short (1 page)</option><option selected>Medium (2-3 pages)</option><option>Detailed (full)</option></select></div>
+            <div class="form-group full-col"><label>Additional Instructions</label><textarea placeholder="Focus on specific topics…"></textarea></div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-green"><i class="fas fa-magic"></i>Generate Summary</button>
+          </div>
+          <div id="summaryOutput" style="display:none;margin-top:16px">
+            <div class="divider"></div>
+            <div class="card-title">Summary Output</div>
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.8">Binary trees are a fundamental data structure in computer science where each node has at most two children, referred to as the left child and the right child. They are widely used in search algorithms, expression parsing, and hierarchical data representation…</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── ASSIGNMENT ─────────────────────────────────────────── -->
+      <div class="page" id="page-assignment">
+        <div class="page-header"><h2>Create Assignment</h2><p>Set tasks for your students with deadlines and scoring.</p></div>
+        <div class="card" style="margin-bottom:20px">
+          <div class="form-grid two">
+            <div class="form-group full-col"><label>Assignment Title</label><input type="text" placeholder="e.g. Assignment 3 – Sorting Algorithms"/></div>
+            <div class="form-group"><label>Select Course</label><select><option>CS201 – Data Structures</option><option>CS301 – Algorithms</option><option>CS401 – OS Fundamentals</option></select></div>
+            <div class="form-group"><label>Maximum Score</label><input type="number" value="100" min="1"/></div>
+            <div class="form-group full-col"><label>Description</label><textarea placeholder="Describe the assignment requirements…"></textarea></div>
+            <div class="form-group"><label>Set Deadline</label><input type="datetime-local"/></div>
+            <div class="form-group"><label>Attachment (optional)</label><input type="file" accept=".pdf,.docx,.zip"/></div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-outline">Save Draft</button>
+            <button class="btn btn-primary"><i class="fas fa-paper-plane"></i>Publish Assignment</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Published Assignments</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Title</th><th>Course</th><th>Deadline</th><th>Max Score</th><th>Submissions</th><th>Actions</th></tr></thead>
+              <tbody>
+                <tr><td>Assignment 1 – Arrays</td><td><span class="course-code-tag">CS201</span></td><td>May 10, 2026</td><td>100</td><td>148 / 156</td><td><button class="btn btn-outline btn-sm">View</button></td></tr>
+                <tr><td>Assignment 2 – Linked Lists</td><td><span class="course-code-tag">CS201</span></td><td>May 20, 2026</td><td>100</td><td>142 / 156</td><td><button class="btn btn-outline btn-sm">View</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── ANNOUNCEMENT ──────────────────────────────────────── -->
+      <div class="page" id="page-announcement">
+        <div class="page-header"><h2>Create Announcement</h2><p>Share updates and links with your students.</p></div>
+        <div class="card" style="margin-bottom:20px">
+          <div class="form-grid">
+            <div class="form-group"><label>Announcement Title</label><input type="text" placeholder="e.g. Exam Schedule Released"/></div>
+            <div class="form-group"><label>Paste Link (optional)</label><input type="url" placeholder="https://…"/></div>
+            <div class="form-group"><label>Description</label><textarea rows="5" placeholder="Write your announcement here…"></textarea></div>
+            <div class="form-group"><label>Target Course</label><select><option>All My Courses</option><option>CS201 – Data Structures</option><option>CS301 – Algorithms</option></select></div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" onclick="postAnnouncement()"><i class="fas fa-bullhorn"></i>Post Announcement</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── CREATE CLASS ──────────────────────────────────────── -->
+      <div class="page" id="page-create-class">
+        <div class="page-header"><h2>Create Virtual Class</h2><p>Launch a Google Meet session for your students.</p></div>
+        <div class="card">
+          <div class="form-grid" style="margin-bottom:20px">
+            <div class="form-group"><label>Session Title</label><input type="text" placeholder="e.g. CS201 Live Lecture – Week 6"/></div>
+            <div class="form-group"><label>Select Course</label><select><option>CS201</option><option>CS301</option><option>CS401</option></select></div>
+            <div class="form-group"><label>Scheduled Date & Time</label><input type="datetime-local"/></div>
+            <div class="form-group"><label>Description / Agenda</label><textarea placeholder="Topics to be covered…"></textarea></div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+            <a href="https://meet.google.com/new" target="_blank" class="meet-btn">
+              <div class="meet-logo">G</div>
+              Start Instant Meet
+            </a>
+            <button class="btn btn-primary"><i class="fas fa-calendar-plus"></i>Schedule & Notify Students</button>
+          </div>
+        </div>
+        <div class="card" style="margin-top:20px">
+          <div class="card-title">Upcoming Classes</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Session</th><th>Course</th><th>Date & Time</th><th>Link</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>Week 6 – Graph Traversal</td><td><span class="course-code-tag">CS201</span></td><td>Jun 2, 2026 · 09:00 AM</td><td><a href="https://meet.google.com" target="_blank" style="color:var(--blue-500);font-size:12px">meet.google.com/…</a></td><td><span class="chip green">Scheduled</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── POCKETAI ─────────────────────────────────────────────── -->
+      <div class="page" id="page-pocketai">
+        <div class="page-header"><h2>PocketAi</h2><p>AI-powered academic assistant for lecturers.</p></div>
+        <div class="chat-container">
+          <div class="chat-header">
+            <div class="chat-ai-icon"><i class="fas fa-brain"></i></div>
+            <div><div class="chat-title">PocketAi </div><div class="chat-subtitle">Powered by Gemma 4 · Academic Support</div></div>
+            <span class="chat-model-badge">Gemma 4</span>
+          </div>
+          <div class="chat-messages" id="pocketaiMessages">
+            <div class="msg ai">
+              <div class="msg-av"><i class="fas fa-brain"></i></div>
+              <div class="msg-bubble">Hello Dr. Williams! I'm PocketAi, your academic assistant. I can help you with course planning, quiz generation, summarizing materials, student performance insights, and more. How can I assist you today?</div>
+            </div>
+          </div>
+          <div class="chat-input-row">
+            <input class="chat-input" id="pocketaiInput" placeholder="Ask PocketAi anything…" onkeydown="if(event.key==='Enter')sendPocketAi()"/>
+            <button class="chat-send-btn" onclick="sendPocketAi()"><i class="fas fa-paper-plane"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── NOTIFICATIONS ─────────────────────────────────────── -->
+      <div class="page" id="page-notifications">
+        <div class="page-header"><h2>Notifications</h2><p>All your recent activity and alerts.</p></div>
+        <div class="card">
+          <div class="notif-list">
+            <div class="notif-item unread">
+              <div class="notif-dot blue"><i class="fas fa-user-plus"></i></div>
+              <div><div class="notif-title">5 new students enrolled in CS201</div><div class="notif-body">Total enrollment is now 156 students.</div><div class="notif-time">2 hours ago</div></div>
+            </div>
+            <div class="notif-item unread">
+              <div class="notif-dot green"><i class="fas fa-file-upload"></i></div>
+              <div><div class="notif-title">Material uploaded successfully</div><div class="notif-body">Week 5 – Binary Trees.pdf was uploaded and AI summary generated.</div><div class="notif-time">5 hours ago</div></div>
+            </div>
+            <div class="notif-item unread">
+              <div class="notif-dot warn"><i class="fas fa-exclamation-triangle"></i></div>
+              <div><div class="notif-title">Assignment 2 – 14 students not submitted</div><div class="notif-body">Deadline was May 20. Consider sending a reminder.</div><div class="notif-time">1 day ago</div></div>
+            </div>
+            <div class="notif-item">
+              <div class="notif-dot blue"><i class="fas fa-video"></i></div>
+              <div><div class="notif-title">Virtual class session started</div><div class="notif-body">CS301 live session had 89 students attend.</div><div class="notif-time">2 days ago</div></div>
+            </div>
+            <div class="notif-item">
+              <div class="notif-dot green"><i class="fas fa-check-circle"></i></div>
+              <div><div class="notif-title">Quiz published: Week 4 – Linked Lists</div><div class="notif-body">120 students have completed the quiz.</div><div class="notif-time">3 days ago</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── PROFILE ────────────────────────────────────────────── -->
+      <div class="page" id="page-profile">
+        <div class="page-header"><h2>Profile</h2></div>
+        <div class="profile-hero">
+          <div class="profile-avatar-large" id="profileAvatarLarge" onclick="document.getElementById('avatarUpload').click()">
+            <span>DW</span>
+            <input type="file" id="avatarUpload" accept="image/*" hidden onchange="handleAvatar(this)"/>
+          </div>
+          <div class="profile-info">
+            <h2>Dr. David Williams</h2>
+            <p>Senior Lecturer · Department of Computer Science</p>
+            <div class="profile-meta">
+              <span class="profile-tag"><i class="fas fa-envelope"></i> d.williams@uni.edu</span>
+              <span class="profile-tag"><i class="fas fa-id-badge"></i> LEC-00421</span>
+              <span class="profile-tag"><i class="fas fa-calendar-alt"></i> Joined 2019</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="two-col" style="margin-bottom:20px">
+          <div class="card">
+            <div class="card-title">Previous Lecturers <span style="font-size:12px;color:var(--text-muted);font-weight:400">(who taught your courses before)</span></div>
+            <div class="prev-lecturers">
+              <div class="prev-lecturer-item">
+                <div class="prev-av" style="background:var(--blue-600)">MO</div>
+                <div class="prev-info"><div class="prev-name">Dr. Michael Obi</div><div class="prev-course">CS201 · 2023/2024</div></div>
+                <span class="expand-link">View Courses</span>
+              </div>
+              <div class="prev-lecturer-item">
+                <div class="prev-av" style="background:var(--green-600)">AF</div>
+                <div class="prev-info"><div class="prev-name">Prof. Amaka Fadipe</div><div class="prev-course">CS301 · 2022/2023</div></div>
+                <span class="expand-link">View Courses</span>
+              </div>
+              <div class="prev-lecturer-item">
+                <div class="prev-av" style="background:#9b59b6">JK</div>
+                <div class="prev-info"><div class="prev-name">Dr. James Kariuki</div><div class="prev-course">CS401 · 2021/2022</div></div>
+                <span class="expand-link">View Courses</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Previous Uploads</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div class="prev-lecturer-item"><div class="prev-av" style="background:#e74c3c;border-radius:8px;font-size:11px">PDF</div><div class="prev-info"><div class="prev-name">Binary Trees – Week 5</div><div class="prev-course">CS201 · May 25, 2026</div></div><button class="btn btn-outline btn-sm">View</button></div>
+              <div class="prev-lecturer-item"><div class="prev-av" style="background:#e74c3c;border-radius:8px;font-size:11px">PDF</div><div class="prev-info"><div class="prev-name">Algorithm Complexity Notes</div><div class="prev-course">CS301 · May 20, 2026</div></div><button class="btn btn-outline btn-sm">View</button></div>
+              <div class="prev-lecturer-item"><div class="prev-av" style="background:#e74c3c;border-radius:8px;font-size:11px">PDF</div><div class="prev-info"><div class="prev-name">OS Process Management</div><div class="prev-course">CS401 · May 18, 2026</div></div><button class="btn btn-outline btn-sm">View</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">My Courses <button class="btn btn-green btn-sm" onclick="openModal('addCourseModal')"><i class="fas fa-plus"></i>Upload New Course</button></div>
+          <div class="course-cards" id="courseCardsGrid">
+            <div class="course-card-mini"><button class="del-btn" onclick="deleteCourse(this)"><i class="fas fa-times"></i></button><div class="cc-code">CS201</div><div class="cc-name">Data Structures</div><div class="cc-enrolled"><i class="fas fa-users"></i>156 enrolled</div></div>
+            <div class="course-card-mini"><button class="del-btn" onclick="deleteCourse(this)"><i class="fas fa-times"></i></button><div class="cc-code">CS301</div><div class="cc-name">Algorithms</div><div class="cc-enrolled"><i class="fas fa-users"></i>98 enrolled</div></div>
+            <div class="course-card-mini"><button class="del-btn" onclick="deleteCourse(this)"><i class="fas fa-times"></i></button><div class="cc-code">CS401</div><div class="cc-name">Operating Systems</div><div class="cc-enrolled"><i class="fas fa-users"></i>72 enrolled</div></div>
+            <div class="course-card-mini"><button class="del-btn" onclick="deleteCourse(this)"><i class="fas fa-times"></i></button><div class="cc-code">CS501</div><div class="cc-name">Computer Networks</div><div class="cc-enrolled"><i class="fas fa-users"></i>65 enrolled</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── SETTINGS ───────────────────────────────────────────── -->
+      <div class="page" id="page-settings">
+        <div class="page-header"><h2>Settings</h2><p>Manage your account preferences.</p></div>
+        <div class="settings-sections">
+          <!-- Profile Picture -->
+          <div class="settings-block">
+            <div class="settings-block-header"><i class="fas fa-camera"></i>Profile Picture</div>
+            <div class="settings-block-body" style="display:flex;align-items:center;gap:20px">
+              <div class="profile-avatar-large" style="width:64px;height:64px;font-size:22px;cursor:default"><span>DW</span></div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <button class="btn btn-primary btn-sm" onclick="document.getElementById('settingsAvatarUpload').click()"><i class="fas fa-upload"></i>Change Picture</button>
+                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>Delete Picture</button>
+                <input type="file" id="settingsAvatarUpload" accept="image/*" hidden/>
+              </div>
+            </div>
+          </div>
+          <!-- Change Password -->
+          <div class="settings-block">
+            <div class="settings-block-header"><i class="fas fa-lock"></i>Change Password</div>
+            <div class="settings-block-body">
+              <div class="form-grid two">
+                <div class="form-group"><label>Current Password</label><input type="password" placeholder="••••••••"/></div>
+                <div class="form-group"></div>
+                <div class="form-group"><label>New Password</label><input type="password" placeholder="••••••••"/></div>
+                <div class="form-group"><label>Confirm New Password</label><input type="password" placeholder="••••••••"/></div>
+              </div>
+              <div class="form-actions">
+                <button class="btn btn-primary">Update Password</button>
+                <button class="btn btn-outline" onclick="openModal('forgotModal')">Forgot Password?</button>
+              </div>
+            </div>
+          </div>
+          <!-- Notifications settings -->
+          <div class="settings-block">
+            <div class="settings-block-header"><i class="fas fa-bell"></i>Notification Preferences</div>
+            <div class="settings-block-body">
+              <div style="display:flex;flex-direction:column;gap:14px">
+                <div class="toggle-row"><span class="toggle-label">Email notifications for student submissions</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="toggle-row"><span class="toggle-label">Push notifications for new enrollments</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="toggle-row"><span class="toggle-label">Reminder alerts for assignment deadlines</span><div class="toggle" onclick="this.classList.toggle('on')"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<!-- ═══ MODALS ═══ -->
+
+<!-- Add Timetable Row -->
+<div class="modal-overlay" id="addClassModal">
+  <div class="modal">
+    <div class="modal-header"><span class="modal-title">Add Class to Timetable</span><button class="modal-close" onclick="closeModal('addClassModal')">×</button></div>
+    <div class="form-grid two">
+      <div class="form-group full-col"><label>Course Name</label><input type="text" id="tt-name" placeholder="e.g. Database Systems"/></div>
+      <div class="form-group"><label>Course Code</label><input type="text" id="tt-code" placeholder="e.g. CS601"/></div>
+      <div class="form-group"><label>Day(s)</label><input type="text" id="tt-days" placeholder="e.g. Mon, Wed"/></div>
+      <div class="form-group"><label>Time</label><input type="text" id="tt-time" placeholder="e.g. 10:00 – 11:00 AM"/></div>
+      <div class="form-group full-col"><label>Venue / Location</label><input type="text" id="tt-venue" placeholder="e.g. LT-C, Block 4"/></div>
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-outline" onclick="closeModal('addClassModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="addTimetableRow()">Add Class</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add Course -->
+<div class="modal-overlay" id="addCourseModal">
+  <div class="modal">
+    <div class="modal-header"><span class="modal-title">Upload New Course</span><button class="modal-close" onclick="closeModal('addCourseModal')">×</button></div>
+    <div class="form-grid">
+      <div class="form-group"><label>Course Name</label><input type="text" id="cn-name" placeholder="e.g. Database Systems"/></div>
+      <div class="form-group"><label>Course Code</label><input type="text" id="cn-code" placeholder="e.g. CS601"/></div>
+      <div class="form-group"><label>Course Description</label><textarea id="cn-desc" placeholder="Brief overview…"></textarea></div>
+      <div class="form-group"><label>Upload Syllabus (PDF)</label><input type="file" accept=".pdf"/></div>
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-outline" onclick="closeModal('addCourseModal')">Cancel</button>
+      <button class="btn btn-green" onclick="addCourse()">Upload Course</button>
+    </div>
+  </div>
+</div>
+
+<!-- Forgot Password -->
+<div class="modal-overlay" id="forgotModal">
+  <div class="modal">
+    <div class="modal-header"><span class="modal-title">Forgot Password</span><button class="modal-close" onclick="closeModal('forgotModal');resetForgot()">×</button></div>
+    <!-- Step 1: Email/Phone -->
+    <div class="otp-step active" id="fp-step1">
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px">Enter your email or phone number to receive an OTP.</p>
+      <div class="form-group"><label>Email / Phone</label><input type="text" id="fp-contact" placeholder="email@example.com or +234…"/></div>
+      <div class="form-actions"><button class="btn btn-primary" onclick="fpNext(1)">Send OTP</button></div>
+    </div>
+    <!-- Step 2: OTP -->
+    <div class="otp-step" id="fp-step2">
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px">Enter the 4-digit OTP sent to your email/phone.</p>
+      <div class="otp-inputs">
+        <input maxlength="1" oninput="otpNext(this,0)"/>
+        <input maxlength="1" oninput="otpNext(this,1)"/>
+        <input maxlength="1" oninput="otpNext(this,2)"/>
+        <input maxlength="1" oninput="otpNext(this,3)"/>
+      </div>
+      <div class="form-actions"><button class="btn btn-primary" onclick="fpNext(2)">Verify OTP</button></div>
+    </div>
+    <!-- Step 3: New Password -->
+    <div class="otp-step" id="fp-step3">
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px">Create a new secure password.</p>
+      <div class="form-grid">
+        <div class="form-group"><label>New Password</label><input type="password" placeholder="••••••••"/></div>
+        <div class="form-group"><label>Confirm Password</label><input type="password" placeholder="••••••••"/></div>
+      </div>
+      <div class="form-actions"><button class="btn btn-green" onclick="fpComplete()"><i class="fas fa-check"></i>Reset Password</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FLOATING CUSTOMER SERVICE ═══ -->
+<div id="floatingCS">
+  <div class="cs-panel" id="csPanel">
+    <div class="cs-panel-header">
+      <div class="chat-ai-icon" style="width:30px;height:30px;font-size:13px;border-radius:8px"><i class="fas fa-headset"></i></div>
+      <div style="margin-left:8px"><div class="cs-title">CampAi</div><div style="font-size:10px;color:rgba(255,255,255,.6)">Powered by Gemma 4</div></div>
+      <button class="cs-close" onclick="toggleCS()">×</button>
+    </div>
+    <div class="cs-messages" id="csMessages">
+      <div class="msg ai" style="max-width:100%">
+        <div class="msg-av" style="width:26px;height:26px;min-width:26px;font-size:11px"><i class="fas fa-headset"></i></div>
+        <div class="msg-bubble" style="font-size:12px">Hi! I'm your CampAi support assistant. How can I help you today?</div>
+      </div>
+    </div>
+    <div class="cs-input-row">
+      <input class="cs-input" id="csInput" placeholder="Type your issue…" onkeydown="if(event.key==='Enter')sendCS()"/>
+      <button class="cs-send" onclick="sendCS()"><i class="fas fa-paper-plane"></i></button>
+    </div>
+    <div class="email-escalate">Can't resolve your issue? <a href="mailto:support@pocketcampus.edu">Email us</a></div>
+  </div>
+  <button class="cs-toggle" onclick="toggleCS()" title="Customer Support">
+    <i class="fas fa-headset"></i>
+  </button>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>
