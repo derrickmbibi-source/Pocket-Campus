@@ -7,6 +7,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 <link rel="stylesheet" href="/CSS/style.css"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const { createClient } = supabase
+
+  const _supabase = createClient(
+    'https://gsiufzueiwmunjqakrhv.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdzaXVmenVlaXdtdW5qcWFrcmh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwODQ5NzUsImV4cCI6MjA5NTY2MDk3NX0.9wfy72R2VRbLjXDSOUZR-nRpeUO9hgrkXVUwOwoE8Vc'
+  )
+</script>
 </head>
 <body>
 <div id="app">
