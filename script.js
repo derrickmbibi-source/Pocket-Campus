@@ -257,6 +257,7 @@ let currentStep = 1;
     }
     err.style.display = 'none';
     alert('Login successful! Redirecting to lecturer dashboard…');
+    window.location.href = 'lecturers_dashboard.html';
     });
   }
 
